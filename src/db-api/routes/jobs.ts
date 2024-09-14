@@ -12,8 +12,11 @@ router.get("", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const job = [await prisma.job.findUnique({ where: { id } })];
-  cleaner(job, "createdAt", "updatedAt", "applicants", "stages", "website");
+  const job = await prisma.job.findUnique({ where: { id } });
+  if (!job) {
+    return res.status(404).json({ message: "not found" });
+  }
+  cleaner([job], "createdAt", "updatedAt", "applicants", "stages", "website");
   return res.status(200).json(job);
 });
 

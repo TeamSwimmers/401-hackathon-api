@@ -1,7 +1,7 @@
 // FILE NOT ACCESSIBLE BY API
 // NO INPUT VALIDATION ON THIS FILE
 
-import { api_db as api, auth_db as auth } from "../db-client";
+import { api_db as api, auth_db as auth, auth_db } from "../db-client";
 import { JobSchema, JobSchemaCore } from "../schemas/job-schema";
 import { COMPANIES, JOBS } from "./data";
 import { createId } from "@paralleldrive/cuid2";
@@ -31,3 +31,20 @@ async function add_all_jobs(jobs_list: JobSchemaCore[]) {
   }
   await api.job.createMany({ data: jobs });
 }
+
+add_all_jobs(JOBS);
+
+// async function testing() {
+//   const data = await auth_db.company.findMany();
+//   const ids = data.map((value) => value.id);
+//   const names = data.map((value) => value.name);
+
+//   const jobs_edited: any[] = [];
+//   for (const i in JOBS) {
+//     const index = ids.indexOf(JOBS[i].companyId);
+//     jobs_edited.push({ companyName: names[i], ...JOBS[i] });
+//   }
+//   console.dir(jobs_edited, { maxArrayLength: null });
+// }
+
+// testing();

@@ -27,6 +27,7 @@ model Application {
 model Job {
     id                  String          @id
     companyId           String
+    companyName         String          @default("")
     role                String          
     rating              Float?          @default(0.0)
     type                String

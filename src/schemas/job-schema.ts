@@ -1,5 +1,6 @@
 export interface JobSchemaCore {
   companyId: string;
+  companyName: string;
   role: string;
   rating?: number;
   type: string;
